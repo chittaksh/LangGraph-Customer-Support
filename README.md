@@ -50,19 +50,50 @@ The goal is **to demonstrate your understanding of LangGraph-based agentic workf
                      │     ROUTER         │
                      │                    │
                      │ Good response?     │
-                     └────────┬─────┬─────┘
-                              │     │
-                         NO   │     │ YES
-                              │     │
-                              ▼     ▼
-                         ┌────────┐ ┌──────────┐
-                         │  FIX   │ │  FINAL   │
-                         │        │ │ RESPONSE │
-                         └────┬───┘ └────┬─────┘
-                              │          │
-                              ▼          ▼
-                           REVIEW       END
+                     └──────┬───────┬─────┘
+                            │       │
+                         NO │       │ YES
+                            │       │
+                            ▼       ▼
+                      ┌────────┐ ┌──────────┐
+                      │  FIX   │ │  FINAL   │
+                      │        │ │ RESPONSE │
+                      └────┬───┘ └────┬─────┘
+                           │          │
+                           ▼          ▼
+                        REVIEW       END
 ```
 
+## File Structure
 
+```
+customer-support/
+├── .env.example              # Environment variable template
+├── .gitignore                # Git ignore file
+├── pyproject.toml            # Dependencies and build system configuration
+├── uv.lock                   # Lockfile for reproducible installs
+├── README.md                 # Project documentation
+│
+├── app/
+│   ├── __init__.py           # Package initialization
+│   ├── state.py              # TypedDict state definition
+│   ├── prompts.py            # Node system prompts
+│   ├── nodes.py              # LangGraph node functions & structured outputs
+│   └── graph.py              # StateGraph definition and conditional routing
+│
+├── output/                   # Directory created dynamically at runtime
+│   ├── final_response.txt    # Text output of final draft
+│   └── execution_result.json # Complete state trace log
+│
+└── main.py                   # CLI entry point
+
+```
+
+## How to run
+uv pip install -r requirements.txt
+
+uv run python main.py
+
+## ENV file sample:
+GROQ_API_KEY="your-groq-api-key-here"
 

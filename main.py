@@ -25,6 +25,20 @@ OUTPUT_DIR = Path("output")
 # Create the directory if it does not already exist.
 OUTPUT_DIR.mkdir(exist_ok=True)
 
+# ============================================================
+# SAVE Response RESULT
+# ============================================================
+
+def save_response_file(response: str):
+
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    response_file = OUTPUT_DIR / f"final_response_{timestamp}.json"
+
+    with open(response_file, "a", encoding="utf-8") as file:
+        file.write(response)
+
+    return response_file
+
 
 # ============================================================
 # SAVE COMPLETE EXECUTION RESULT
@@ -35,14 +49,6 @@ def save_execution_result(result: dict):
     Save the complete LangGraph state as JSON.
 
     This gives us an audit/debug file containing:
-
-        - requirement
-        - generated code
-        - review feedback
-        - QA feedback
-        - final report
-        - needs_fix
-        - iteration count
     """
 
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -122,15 +128,16 @@ def run():
         #-----------------------------------------------------
         # FINAL RESPONSE
         #-----------------------------------------------------
+
         print(f"\n RESPONSE: {result["generated_response"]}")
+
+        response_file = save_response_file(result["generated_response"])
 
         # ====================================================
         # SAVE COMPLETE RESULT
         # ====================================================
 
-        result_file = save_execution_result(
-            result
-        )
+        result_file = save_execution_result(result)
 
         # ====================================================
         # PRINT EXECUTION SUMMARY
@@ -141,12 +148,9 @@ def run():
         print("        EXECUTION SUMMARY")
         print("===================================")
 
-        print(
-            "Execution File:",
-            result_file
-        )
+        print(f"Execution File: {result_file} Response file: {response_file}")
 
-        print(f"\n \n {initial_state}")
+        print(f"\n \n {result}")
 
 
 # ============================================================
