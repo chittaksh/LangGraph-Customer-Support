@@ -1,0 +1,10 @@
+{
+    "customer_query": "checking print statement",
+    "category": "OTHER",
+    "priority": "LOW",
+    "issue_summary": "The customer is asking for assistance with checking a print statement, likely related to code debugging.\n\n- **Customer Name:** Not provided  \n- **Contact Info:** Not provided  \n- **Product/Service:** Not provided  \n- **Issue Type:** Code debugging / print statement verification  \n- **Issue Description:** “checking print statement”  \n- **Error Message:** Not provided  \n- **Steps Already Taken:** Not provided  \n- **Desired Outcome:** Not provided  \n- **Priority/Urgency:** Not provided  ",
+    "generated_response": "I understand you need help verifying a print statement; could you please share the relevant code snippet or output so I can assist you further?",
+    "review_feedback": "The response is concise, polite, and correctly asks for the needed code details to assist with the print statement verification.",
+    "approved": true,
+    "iteration_count": 0
+}
